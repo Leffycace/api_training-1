@@ -13,11 +13,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
-class ApiControllerIT {
+class ApiControllerTest {
 
     private final MockMvc mockMvc;
 
-    ApiControllerIT(@Autowired MockMvc mockMvc) {
+    ApiControllerTest(@Autowired MockMvc mockMvc) {
         this.mockMvc = mockMvc;
     }
 
@@ -47,5 +47,15 @@ class ApiControllerIT {
                    "userSexPref": "M"
                  }
                 """));
+    }
+
+    @Test
+    void get_matches_test() throws Exception {
+        mockMvc
+            .perform(MockMvcRequestBuilders.get("/api/matches")
+                .queryParam("userName", "machin")
+                .queryParam("userCountry", "FR")
+            )
+            .andExpect(status().isOk());
     }
 }
