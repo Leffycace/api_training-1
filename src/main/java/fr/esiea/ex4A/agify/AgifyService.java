@@ -1,5 +1,7 @@
 package fr.esiea.ex4A.agify;
 
+import fr.esiea.ex4A.repository.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -22,4 +24,5 @@ public class AgifyService {
         Response<Map<String, String>> response = apiCall.execute();
         return Integer.parseInt(response.body().getOrDefault("age", "18"));
     }
+
 }

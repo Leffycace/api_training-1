@@ -30,7 +30,13 @@ public class ApiController {
     public ResponseEntity<?> addUser(@RequestBody Map<String, String> request) throws IOException {
         String userName = request.get("userName");
         String userCountry = request.get("userCountry");
-        Integer userAge = agifyService.getAge(userName, userCountry);
+
+        Integer userAge = null;
+        Optional<User> opUser = repository.getUsers().stream().filter(user -> user.getUserName().equalsIgnoreCase(userName) && user.getUserCountry().equalsIgnoreCase(userCountry)).findFirst();
+        if (opUser.isEmpty())
+            userAge = agifyService.getAge(userName, userCountry);
+        else
+            userAge = opUser.get().getUserAge();
 
         User user = new User(request.get("userEmail"), userName, request.get("userTweeter"), userCountry, request.get("userSex"), request.get("userSexPref"), userAge);
         repository.getUsers().add(user);

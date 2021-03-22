@@ -123,7 +123,7 @@ class ApiControllerIT {
 
     @Test
     @Order(4)
-    void get_users_list() throws Exception {
+    void get_users_list_no_registered_users() throws Exception {
         mockMvc
             .perform(MockMvcRequestBuilders.get("/api/users"))
             .andExpect(status().isOk())
