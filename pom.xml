@@ -79,6 +79,12 @@
             <artifactId>json-path</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit-mock</artifactId>
+            <version>2.9.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -126,6 +132,13 @@
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report-it</id>
+                        <phase>integration-test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>

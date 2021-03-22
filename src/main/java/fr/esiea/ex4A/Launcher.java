@@ -17,12 +17,9 @@ public class Launcher {
 
     @Bean
     AgifyClient agifyClient() {
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
         Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(AgifyClient.BASE_URI)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(httpClient.build())
             .build();
 
         return retrofit.create(AgifyClient.class);
